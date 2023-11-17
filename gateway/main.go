@@ -1,17 +1,29 @@
 package main
 
 import (
-	"net/http"
+	"fmt"
+
+	"github.com/Sudarshan-PR/playground/gateway/controllers"
+	"github.com/Sudarshan-PR/playground/gateway/setup"
 
 	"github.com/gin-gonic/gin"
 )
 
+func SetupRouter() *gin.Engine {
+	r := gin.Default()
+
+	r.POST("/compile", controllers.CompileHandler)
+
+	return r
+}
 func main() {
-  r := gin.Default()
-  r.GET("/ping", func(c *gin.Context) {
-    c.JSON(http.StatusOK, gin.H{
-      "message": "pong",
-    })
-  })
-  r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	if err := setup.Setup(); err != nil {
+		fmt.Println("Error during setup")
+		fmt.Println(err)
+		return
+	}
+	
+	r := SetupRouter()
+
+	r.Run(":8000")
 }

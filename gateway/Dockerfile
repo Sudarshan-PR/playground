@@ -1,14 +1,23 @@
-FROM golang:latest
+# Build Stage
+FROM golang:1.21-alpine AS build
 
-FROM golang:1.21
+WORKDIR /app
 
-WORKDIR /usr/src/app
-
-# pre-copy/cache go.mod for pre-downloading dependencies and only redownloading them in subsequent builds if they change
 COPY go.mod go.sum ./
 RUN go mod download && go mod verify
 
 COPY . .
-RUN go build -v -o /usr/local/bin/app ./...
+RUN go build -v -o main-bin .
 
-cmd ["app"]
+# Deployment Stage
+FROM alpine:3.14 as deploy
+
+RUN echo "Hello World"
+
+WORKDIR /app
+
+COPY --from=build /app/main-bin .
+
+EXPOSE 8000
+
+CMD ["/app/main-bin"]
