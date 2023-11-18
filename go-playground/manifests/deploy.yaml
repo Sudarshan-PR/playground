@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-playground
+  labels:
+    app: go-playground
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-playground
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+  template:
+    metadata:
+      labels:
+        app: go-playground
+    spec:
+      containers:
+        - name: go-playground
+          image: 5885225/go-playground
+          envFrom:
+            - configMapRef:
+                name: playground
+            - secretRef:
+                name: gateway-secret
