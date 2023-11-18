@@ -7,7 +7,7 @@ COPY go.mod go.sum ./
 RUN go mod download && go mod verify
 
 COPY . .
-RUN go build -v -o main-bin .
+RUN go build -v -o main .
 
 # Deployment Stage
 FROM alpine:3.14 as deploy
@@ -16,8 +16,8 @@ RUN echo "Hello World"
 
 WORKDIR /app
 
-COPY --from=build /app/main-bin .
+COPY --from=build /app/main .
 
 EXPOSE 8000
 
-CMD ["/app/main-bin"]
+CMD ["/app/main"]
