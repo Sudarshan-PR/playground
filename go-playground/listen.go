@@ -85,7 +85,7 @@ func createRabbitMQConnection(url string) (*amqp.Connection, error) {
 func listener(deliveries <-chan amqp.Delivery) {
 	var (
 		body queueBody
-		code string
+		output string
 		err error
 		success bool
 	)
@@ -96,11 +96,13 @@ func listener(deliveries <-chan amqp.Delivery) {
 			continue
 		}
 
-		code, err = runCode(body.Code) 
+		output, err = runCode(body.Code) 
 		success = true
 		if err != nil {
 			success = false
 		}
+		fmt.Println("Output: \n", output)
+		fmt.Println("Success: ", success)
 	}
 }
 
