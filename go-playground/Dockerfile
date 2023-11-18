@@ -2,8 +2,10 @@ FROM golang:1.21-alpine
 
 WORKDIR /app
 
-RUN apk add rabbitmq-c-utils
+COPY go.mod go.sum ./
+RUN go mod download && go mod verify
 
 COPY . .
+RUN go build -o main-bin .
 
-CMD ["./listen.sh"]
+CMD ["/app/listen.go"]
