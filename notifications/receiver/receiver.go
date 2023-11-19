@@ -3,7 +3,7 @@ package receiver
 import (
 	"context"
 
-	pb "github.com/Sudarshan-PR/playground/notifications/protos"
+	pb "github.com/Sudarshan-PR/playground/notifications/notification-protos"
 )
 
 type NotificationServer struct {

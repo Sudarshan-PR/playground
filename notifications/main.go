@@ -4,7 +4,7 @@ import (
 	"log"
 	"net"
 
-	pb "github.com/Sudarshan-PR/playground/notifications/protos"
+	pb "github.com/Sudarshan-PR/playground/notifications/notification-protos"
 	"github.com/Sudarshan-PR/playground/notifications/receiver"
 	"google.golang.org/grpc"
 )
