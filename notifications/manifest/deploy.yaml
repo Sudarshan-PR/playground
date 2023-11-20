@@ -20,4 +20,4 @@ spec:
     spec:
       containers:
         - name: notification
-          image: 5885225/notification
+          image: 5885225/playground-notification-service
