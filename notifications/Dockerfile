@@ -34,7 +34,7 @@ COPY --from=buildProto /protos/playground-protos-main/notification-protos ./noti
 
 # Copy source code
 COPY . .
-RUN go build -v -o main .
+RUN go build -o main .
 
 
 ####################

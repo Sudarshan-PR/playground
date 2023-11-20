@@ -22,9 +22,11 @@ func serveGRPC(server *grpc.Server, listener net.Listener) {
 	}
 }
 func websocketHandler(w http.ResponseWriter, req *http.Request) {
-	userid := req.Header.Get("user")
+	userid := req.URL.Query().Get("user")
 	if userid == "" {
-		log.Printf("No userid passsed.")
+		log.Printf("No userid passed.")
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("No user passed as query param"))
 		return
 	}
 
