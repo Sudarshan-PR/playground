@@ -1,7 +1,7 @@
 package models
 
 type CompileBody struct {
-	ID string `json:"client_id"`
+	ID string `json:"userid"`
 	Language string `json:"language"`
 	Code string `json:"code"`
 }
