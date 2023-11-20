@@ -55,7 +55,7 @@ func main() {
 		log.Fatalf("Could not connect to notification service: %v", err)
 	}
 	defer conn.Close()
-	fmt.Println("Connections to Notifications service created: ", conn)
+	fmt.Println("Successfully connected to Notification service")
 
 	forever := make(chan bool)
 

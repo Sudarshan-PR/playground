@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: playground
 data:
-  NOTIFICATION_SERVICE_ADDRESS: "notification"
+  NOTIFICATIONS_SERVICE_ADDRESS: "notification"
