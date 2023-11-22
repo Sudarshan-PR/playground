@@ -9,7 +9,8 @@ metadata:
     nginx.ingress.kubernetes.io/enable-cors: "true"
 spec:
   rules:
-    - host: api.playground.com
+    #- host: api.playground.com
+    - host: api.sudarshan.clud
       http:
         paths:
           - path: /
