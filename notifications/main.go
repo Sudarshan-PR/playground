@@ -50,7 +50,7 @@ func websocketHandler(w http.ResponseWriter, req *http.Request) {
 	for {
 		mt, message, err := c.ReadMessage()
 		if err != nil {
-			log.Println("Disconnected:", err)
+			log.Println("Disconnected: ", userid,  err)
 			break
 		}
 
